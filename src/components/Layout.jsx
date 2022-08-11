@@ -4,7 +4,7 @@ import Link from 'next/link'
 import clsx from 'clsx'
 
 import { AudioPlayer } from '@/components/player/AudioPlayer'
-import posterImage from '@/images/poster.png'
+import posterImage from '@/images/poster.jpg'
 
 function randomBetween(min, max, seed = 1) {
   return () => {
@@ -142,7 +142,7 @@ function AboutSection(props) {
     <section {...props}>
       <h2 className="flex items-center font-mono text-sm font-medium leading-7 text-slate-900">
         <TinyWaveFormIcon
-          colors={['fill-violet-300', 'fill-pink-300']}
+          colors={['fill-violet-300', 'fill-blue-300']}
           className="h-2.5 w-2.5"
         />
         <span className="ml-2.5">About</span>
@@ -153,16 +153,14 @@ function AboutSection(props) {
           !isExpanded && 'lg:line-clamp-4'
         )}
       >
-        In this show, Eric and Wes dig deep to get to the facts with guests who
-        have been labeled villains by a society quick to judge, without actually
-        getting the full story. Tune in every Thursday to get to the truth with
-        another misunderstood outcast as they share the missing context in their
-        tragic tale.
+        In this show, Dr. Dalton Main explores the health and wellness space in
+        search of digestible ways to optimize the health of the masses with a
+        recurring web3 segments.
       </p>
       {!isExpanded && (
         <button
           type="button"
-          className="mt-2 hidden text-sm font-bold leading-6 text-pink-500 hover:text-pink-700 active:text-pink-900 lg:inline-block"
+          className="mt-2 hidden text-sm font-bold leading-6 text-blue-500 hover:text-blue-700 active:text-blue-900 lg:inline-block"
           onClick={() => setIsExpanded(true)}
         >
           Show more
@@ -173,7 +171,7 @@ function AboutSection(props) {
 }
 
 export function Layout({ children }) {
-  let hosts = ['Eric Gordon', 'Wes Mantooth']
+  let hosts = ['Dr. Dalton Main']
 
   return (
     <>
@@ -210,11 +208,10 @@ export function Layout({ children }) {
           </Link>
           <div className="mt-10 text-center lg:mt-12 lg:text-left">
             <p className="text-xl font-bold text-slate-900">
-              <Link href="/">Their Side</Link>
+              <Link href="/">Healthy Dose</Link>
             </p>
             <p className="mt-3 text-lg font-medium leading-8 text-slate-700">
-              Conversations with the most tragically misunderstood people of our
-              time.
+              Conversations about health and wellness with a side of web3.
             </p>
           </div>
           <AboutSection className="mt-12 hidden lg:block" />

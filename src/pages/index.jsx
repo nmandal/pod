@@ -63,7 +63,7 @@ function EpisodeEntry({ episode }) {
             <button
               type="button"
               onClick={() => player.toggle()}
-              className="flex items-center text-sm font-bold leading-6 text-pink-500 hover:text-pink-700 active:text-pink-900"
+              className="flex items-center text-sm font-bold leading-6 text-blue-500 hover:text-blue-700 active:text-blue-900"
               aria-label={`${player.playing ? 'Pause' : 'Play'} episode ${
                 episode.title
               }`}
@@ -84,7 +84,7 @@ function EpisodeEntry({ episode }) {
             </span>
             <Link
               href={`/${episode.id}`}
-              className="flex items-center text-sm font-bold leading-6 text-pink-500 hover:text-pink-700 active:text-pink-900"
+              className="flex items-center text-sm font-bold leading-6 text-blue-500 hover:text-blue-700 active:text-blue-900"
               aria-label={`Show notes for episode ${episode.title}`}
             >
               Show notes
@@ -101,8 +101,8 @@ export default function Home({ episodes }) {
     <>
       <Head>
         <title>
-          Their Side - Conversations with the most tragically misunderstood
-          people of our time
+          Healthy Dose - Exploring the health and wellness space in search of
+          digestible ways to optimize the health of the masses
         </title>
         <meta
           name="description"
@@ -115,11 +115,11 @@ export default function Home({ episodes }) {
             Episodes
           </h1>
         </Container>
-        <div className="divide-y divide-slate-100 sm:mt-4 lg:mt-8 lg:border-t lg:border-slate-100">
+        {/* <div className="divide-y divide-slate-100 sm:mt-4 lg:mt-8 lg:border-t lg:border-slate-100">
           {episodes.map((episode) => (
             <EpisodeEntry key={episode.id} episode={episode} />
           ))}
-        </div>
+        </div> */}
       </div>
     </>
   )
