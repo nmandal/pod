@@ -8,6 +8,19 @@ import { FormattedDate } from '@/components/FormattedDate'
 import { PlayButton } from '@/components/player/PlayButton'
 
 export default function Episode({ episode }) {
+  episode = {
+    id: '1',
+    title: '1: Longevity',
+    description:
+      'We define longevity as a function of two things, lifespan (how long you live) and healthspan (how well you live). Longevity is not just about living longer, it’s about reducing the amount of time you spend in the final stages of decline by “squaring your longevity curve”.',
+    content:
+      '<h2 id="topics">Topics</h2>\n<ul>\n<li>Quibusdam saepe veritatis unde ea omnis repudiandae neque unde sapiente</li>\n<li>Praesentium velit ratione</li>\n<li>Deserunt ullam sit perspiciatis</li>\n<li>Omnis occaecati tempore numquam delectus iste iste odio</li>\n<li>Est qui consequuntur quis quia quod ipsum consectetur ad aperiam</li>\n<li>Voluptate laborum cum dignissimos esse debitis incidunt tempore</li>\n</ul>\n<h2 id="sponsors">Sponsors</h2>\n<ul>\n<li><a href="#">Athletic Greens</a> — I take a scoop of Athletic Greens every day, regardless of what else I’m eating</li>\n<li><a href="#">Creatine</a> — Take it for muscle building.</li>\n</ul>\n<h2 id="links">Links</h2>\n<ul>\n<li><a href="#">Quis laboriosam</a> molestiae tempore necessitatibus</li>\n<li><a href="#">Sit autem</a> neque minima itaque sit commodi</li>\n<li>Eos ratione <a href="#">blanditiis</a></li>\n<li>Eius a <a href="#">qui quasi</a></li>\n<li>Laborum laudantium sunt <a href="#">mollitia aliquam</a> corporis</li>\n</ul>\n',
+    published: 1643241600000,
+    audio: {
+      src: '',
+      type: 'audio/mpeg',
+    },
+  }
   let date = new Date(episode.published)
 
   let audioPlayerData = useMemo(
