@@ -33,7 +33,7 @@ function EpisodeEntry({ episode }) {
         src: episode.audio.src,
         type: episode.audio.type,
       },
-      link: `/${episode.id}`,
+      link: `/${episode.itunes_episode}`,
     }),
     [episode]
   )
@@ -41,24 +41,25 @@ function EpisodeEntry({ episode }) {
 
   return (
     <article
-      aria-labelledby={`episode-${episode.id}-title`}
+      aria-labelledby={`episode-${episode.itunes_episode}-title`}
       className="py-10 sm:py-12"
     >
       <Container>
         <div className="flex flex-col items-start">
           <h2
-            id={`episode-${episode.id}-title`}
+            id={`episode-${episode.itunes_episode}-title`}
             className="mt-2 text-lg font-bold text-slate-900"
           >
-            <Link href={`/${episode.id}`}>{episode.title}</Link>
+            <Link href={`/${episode.itunes_episode}`}>{episode.title}</Link>
           </h2>
           <FormattedDate
             date={date}
             className="order-first font-mono text-sm leading-7 text-slate-500"
           />
-          <p className="mt-1 text-base leading-7 text-slate-700">
-            {episode.description}
-          </p>
+          <div
+            className="mt-1 text-base leading-7 text-slate-700"
+            dangerouslySetInnerHTML={{ __html: episode.description }}
+          ></div>
           <div className="mt-4 flex items-center gap-4">
             <button
               type="button"
@@ -83,7 +84,7 @@ function EpisodeEntry({ episode }) {
               /
             </span>
             <Link
-              href={`/${episode.id}`}
+              href={`/${episode.itunes_episode}`}
               className="flex items-center text-sm font-bold leading-6 text-blue-500 hover:text-blue-700 active:text-blue-900"
               aria-label={`Show notes for episode ${episode.title}`}
             >
@@ -106,7 +107,7 @@ function TestEpisodeEntry({ episode }) {
         src: episode.audio.src,
         type: episode.audio.type,
       },
-      link: `/${episode.id}`,
+      link: `/${episode.itunes_episode}`,
     }),
     [episode]
   )
@@ -114,16 +115,16 @@ function TestEpisodeEntry({ episode }) {
 
   return (
     <article
-      aria-labelledby={`episode-${episode.id}-title`}
+      aria-labelledby={`episode-${episode.itunes_episode}-title`}
       className="py-10 sm:py-12"
     >
       <Container>
         <div className="flex flex-col items-start">
           <h2
-            id={`episode-${episode.id}-title`}
+            id={`episode-${episode.itunes_episode}-title`}
             className="mt-2 text-lg font-bold text-slate-900"
           >
-            <Link href={`/${episode.id}`}>{episode.title}</Link>
+            <Link href={`/${episode.itunes_episode}`}>{episode.title}</Link>
           </h2>
           <FormattedDate
             date={date}
@@ -156,7 +157,7 @@ function TestEpisodeEntry({ episode }) {
               /
             </span>
             <Link
-              href={`/${episode.id}`}
+              href={`/${episode.itunes_episode}`}
               className="flex items-center text-sm font-bold leading-6 text-blue-500 hover:text-blue-700 active:text-blue-900"
               aria-label={`Show notes for episode ${episode.title}`}
             >
@@ -170,51 +171,16 @@ function TestEpisodeEntry({ episode }) {
 }
 
 export default function Home({ episodes }) {
-  episodes = [
-    {
-      id: 3,
-      title: '3: Exercise & Physical Health',
-      published: 1644451200000,
-      description:
-        'Understand how to navigate the complexity of exercise based on your goals and age. Develop a personal exercise protocol across four pillars of physical health – stability, strength, aerobic efficiency, and anaerobic power.',
-      audio: {
-        src: '',
-        type: 'audio/mpeg',
-      },
-    },
-    {
-      id: 2,
-      title: '2: Building The Strategy',
-      published: 1643846400000,
-      description:
-        'We’re constantly bombarded with advice on how to be healthy: What pills should I take? How should I eat? How often should I exercise? This is when it’s important to hit pause, take a step back and clearly define our objective and our strategy.',
-      audio: {
-        src: '',
-        type: 'audio/mpeg',
-      },
-    },
-    {
-      id: 1,
-      title: '1: Longevity',
-      published: 1643241600000,
-      description:
-        'We define longevity as a function of two things, lifespan (how long you live) and healthspan (how well you live). Longevity is not just about living longer, it’s about reducing the amount of time you spend in the final stages of decline by “squaring your longevity curve”',
-      audio: {
-        src: '',
-        type: 'audio/mpeg',
-      },
-    },
-  ]
   return (
     <>
       <Head>
         <title>
-          Healthy Dose - Exploring the health and wellness space in search of
-          digestible ways to optimize the health of the masses
+          Healthy Dose - Exploring the health industry with leaders on the
+          forefront of innovation
         </title>
         <meta
           name="description"
-          content="Conversations with the most tragically misunderstood people of our time."
+          content="Conversations exploring the health industry with leaders on the forefront of innovation."
         />
       </Head>
       <div className="pt-16 pb-12 sm:pb-4 lg:pt-12">
@@ -225,7 +191,7 @@ export default function Home({ episodes }) {
         </Container>
         <div className="divide-y divide-slate-100 sm:mt-4 lg:mt-8 lg:border-t lg:border-slate-100">
           {episodes.map((episode) => (
-            <EpisodeEntry key={episode.id} episode={episode} />
+            <EpisodeEntry key={episode.itunes_episode} episode={episode} />
           ))}
         </div>
       </div>
@@ -234,14 +200,18 @@ export default function Home({ episodes }) {
 }
 
 export async function getStaticProps() {
-  let feed = await parse('https://their-side-feed.vercel.app/api/feed')
+  let feed = await parse('https://anchor.fm/s/a932b5a0/podcast/rss')
+
+  feed.items.map((item) => {
+    console.log(item)
+  })
 
   return {
     props: {
       episodes: feed.items.map(
-        ({ id, title, description, enclosures, published }) => ({
-          id,
-          title: `${id}: ${title}`,
+        ({ itunes_episode, title, description, enclosures, published }) => ({
+          itunes_episode,
+          title: `${itunes_episode}: ${title}`,
           published,
           description,
           audio: enclosures.map((enclosure) => ({

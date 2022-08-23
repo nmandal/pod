@@ -153,9 +153,12 @@ function AboutSection(props) {
           !isExpanded && 'lg:line-clamp-4'
         )}
       >
-        In this show, Dr. Dalton Main explores the health and wellness space in
-        search of digestible ways to optimize the health of the masses with a
-        recurring web3 segments.
+        Dr. Dalton Main explores the health and wellness space in search of
+        digestible ways to optimize the health of the masses. We delve into
+        future technologies with leaders from across the space. The health
+        industry is innovating at a sprints pace and we intend keep you at the
+        forefront. Dalton is a Doctor of Physical Therapy and nutritionist with
+        over a decade of experience in the industry.
       </p>
       {!isExpanded && (
         <button
@@ -211,7 +214,8 @@ export function Layout({ children }) {
               <Link href="/">Healthy Dose</Link>
             </p>
             <p className="mt-3 text-lg font-medium leading-8 text-slate-700">
-              Conversations about health and wellness with a side of web3.
+              Conversations exploring the health industry with leaders on the
+              forefront of innovation.
             </p>
           </div>
           <AboutSection className="mt-12 hidden lg:block" />
@@ -229,14 +233,26 @@ export function Layout({ children }) {
               className="mt-4 flex justify-center gap-10 text-base font-medium leading-7 text-slate-700 sm:gap-8 lg:flex-col lg:gap-4"
             >
               {[
-                ['Spotify', SpotifyIcon],
-                ['Apple Podcast', ApplePodcastIcon],
-                ['Overcast', OvercastIcon],
-                ['RSS Feed', RSSIcon],
-              ].map(([label, Icon]) => (
+                [
+                  'Spotify',
+                  SpotifyIcon,
+                  'https://open.spotify.com/show/052fdJd7ymTcgJtTOpodfR',
+                ],
+                [
+                  'Apple Podcast',
+                  ApplePodcastIcon,
+                  'https://podcasts.apple.com/us/podcast/healthy-dose-podcast/id1641120009',
+                ],
+                ['Overcast', OvercastIcon, '/'],
+                [
+                  'RSS Feed',
+                  RSSIcon,
+                  'https://anchor.fm/s/a932b5a0/podcast/rss',
+                ],
+              ].map(([label, Icon, link]) => (
                 <li key={label} className="flex">
                   <Link
-                    href="/"
+                    href={link}
                     className="group flex items-center"
                     aria-label={label}
                   >
