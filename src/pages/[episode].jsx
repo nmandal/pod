@@ -60,20 +60,20 @@ export default function Episode({ episode }) {
 }
 
 export async function getStaticProps({ params }) {
+  // let feed = await parse('https://their-side-feed.vercel.app/api/feed')
   let feed = await parse('https://anchor.fm/s/a932b5a0/podcast/rss')
-
   let episode = feed.items
     .map(
       ({
         itunes_episode,
         title,
         description,
-        content,
+        // content,
         enclosures,
         published,
       }) => ({
         id: itunes_episode.toString(),
-        title: `${itunes_episode}: ${title}`,
+        title,
         description,
         // content,
         published,
@@ -83,9 +83,7 @@ export async function getStaticProps({ params }) {
         }))[0],
       })
     )
-    .find((id) => {
-      id === params.episode
-    })
+    .find(({ id }) => id === params.episode)
 
   if (!episode) {
     return {

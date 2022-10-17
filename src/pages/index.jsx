@@ -202,16 +202,12 @@ export default function Home({ episodes }) {
 export async function getStaticProps() {
   let feed = await parse('https://anchor.fm/s/a932b5a0/podcast/rss')
 
-  feed.items.map((item) => {
-    console.log(item)
-  })
-
   return {
     props: {
       episodes: feed.items.map(
         ({ itunes_episode, title, description, enclosures, published }) => ({
-          itunes_episode,
-          title: `${itunes_episode}: ${title}`,
+          id: itunes_episode,
+          title: title,
           published,
           description,
           audio: enclosures.map((enclosure) => ({
