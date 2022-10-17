@@ -26,7 +26,7 @@ export default function Episode({ episode }) {
   return (
     <>
       <Head>
-        <title>{`${episode.title} - Healthy Dose`}</title>
+        <title>{`${episode.title} - Compound Existence w/ Dalton Main`}</title>
         <meta name="description" content={episode.description} />
       </Head>
       <article className="py-16 lg:py-36">
@@ -62,31 +62,31 @@ export default function Episode({ episode }) {
 export async function getStaticProps({ params }) {
   let feed = await parse('https://anchor.fm/s/a932b5a0/podcast/rss')
 
-  let episode = feed.items.map(
-    ({
-      itunes_episode,
-      title,
-      description,
-      content,
-      enclosures,
-      published,
-    }) => ({
-      id: itunes_episode.toString(),
-      title: `${itunes_episode}: ${title}`,
-      description,
-      // content,
-      published,
-      audio: enclosures.map((enclosure) => ({
-        src: enclosure.url,
-        type: enclosure.type,
-      }))[0],
+  let episode = feed.items
+    .map(
+      ({
+        itunes_episode,
+        title,
+        description,
+        content,
+        enclosures,
+        published,
+      }) => ({
+        id: itunes_episode.toString(),
+        title: `${itunes_episode}: ${title}`,
+        description,
+        // content,
+        published,
+        audio: enclosures.map((enclosure) => ({
+          src: enclosure.url,
+          type: enclosure.type,
+        }))[0],
+      })
+    )
+    .find((id) => {
+      id === params.episode
     })
-  )[0]
-  // .find(({ itunes_episode }) => {
-  //   itunes_episode === params.episode
-  // })
 
-  console.log(!episode)
   if (!episode) {
     return {
       notFound: true,

@@ -175,8 +175,8 @@ export default function Home({ episodes }) {
     <>
       <Head>
         <title>
-          Healthy Dose - Exploring the health industry with leaders on the
-          forefront of innovation
+          Compound Existence w/ Dalton Main - Exploring the health industry with
+          leaders on the forefront of innovation
         </title>
         <meta
           name="description"

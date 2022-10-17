@@ -4,7 +4,7 @@ import Link from 'next/link'
 import clsx from 'clsx'
 
 import { AudioPlayer } from '@/components/player/AudioPlayer'
-import posterImage from '@/images/poster.jpg'
+import posterImage from '@/images/poster.jpeg'
 
 function randomBetween(min, max, seed = 1) {
   return () => {
@@ -153,12 +153,12 @@ function AboutSection(props) {
           !isExpanded && 'lg:line-clamp-4'
         )}
       >
-        Dr. Dalton Main explores the health and wellness space in search of
-        digestible ways to optimize the health of the masses. We delve into
-        future technologies with leaders from across the space. The health
-        industry is innovating at a sprints pace and we intend keep you at the
-        forefront. Dalton is a Doctor of Physical Therapy and nutritionist with
-        over a decade of experience in the industry.
+        Join Dr. Dalton Main as he explores the intricacies of our existence
+        with experts and thought leaders on the forefront of innovation. We
+        delve into technology, philosophy, healthcare, and more in search of
+        digestible ways to optimize the time we have on this planet. Dalton is a
+        Doctor of Physical Therapy and coach with over a decade experience in
+        the industry.
       </p>
       {!isExpanded && (
         <button
@@ -211,7 +211,7 @@ export function Layout({ children }) {
           </Link>
           <div className="mt-10 text-center lg:mt-12 lg:text-left">
             <p className="text-xl font-bold text-slate-900">
-              <Link href="/">Healthy Dose</Link>
+              <Link href="/">Compound Existence w/ Dalton Main</Link>
             </p>
             <p className="mt-3 text-lg font-medium leading-8 text-slate-700">
               Conversations exploring the health industry with leaders on the
