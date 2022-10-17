@@ -84,7 +84,7 @@ function EpisodeEntry({ episode }) {
               /
             </span>
             <Link
-              href={`/${episode.itunes_episode}`}
+              href={`/${episode.id}`}
               className="flex items-center text-sm font-bold leading-6 text-blue-500 hover:text-blue-700 active:text-blue-900"
               aria-label={`Show notes for episode ${episode.title}`}
             >
